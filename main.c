@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
+#include "cesarcifrar.c"
 
-void  ajuda();
+void  help();
 void ec();
 
 int main() {
@@ -16,33 +17,35 @@ int main() {
 
 
         //Escada de if-else porque implementação de switch-case com string não foi possível.
-        if (strcmp(command, "ajuda") == 0) {
-           ajuda();
-        }else if (strcmp(command, "sair") == 0) {
+        if (strcmp(command, "help") == 0) {
+           help();
+        }else if (strcmp(command, "exit") == 0) {
             printf("Encerrando o processo.");
             return EXIT_SUCCESS; //Finaliza o programa com sucesso
 
         }else if (strcmp(command, "ec") == 0) {
             ec();
-        }else if (strcmp(command, "criar") == 0) {
+        }else if (strcmp(command, "create") == 0) {
 
         }else if (strcmp(command, "cat") == 0) {
 
-        }else if (strcmp(command, "cesar cifrar") == 0) {
+        }else if (strcmp(command, "caesar-encrypt") == 0) {
+            int chave;
+            scanf("Digite uma chave: ", &chave);
+            CaesarEncrypt(command, chave);
+        }else if (strcmp(command, "caesar-decrypt") == 0) {
 
-        }else if (strcmp(command, "cesar decifrar") == 0) {
-
-        }else if (strcmp(command, "registrar") == 0) {
+        }else if (strcmp(command, "register") == 0) {
 
         }else if (strcmp(command, "login") == 0) {
 
         }else if (strcmp(command, "logout") == 0) {
 
-        }else if (strcmp(command, "quem-sou") == 0) {
+        }else if (strcmp(command, "whoami") == 0) {
 
-        }else if (strcmp(command, "<cifra> cifrar") == 0) {
+        }else if (strcmp(command, "encrypt") == 0) {
 
-        }else if (strcmp(command, "<cifra> decifrar") == 0) {
+        }else if (strcmp(command, "decrypt") == 0) {
 
         }else {
             printf("Comando Invalido\n");
@@ -51,7 +54,7 @@ int main() {
     }
 }
 
-void ajuda() { //Incompleto - Deve conter informações sobre todos os comandos
+void help() { //Incompleto - Deve conter informações sobre todos os comandos
      printf("Comandos\n|ajuda: Imprime todos os comandos previstos no programa e seus usos.\n|sair: Encerra o programa.\n|ec <texto>: Le e imprime de volta o texto inserido.\n|criar: abc\n|cat: abc\n|cesar cifrar: abc\n|cesar decifrar: abc\n|registrar: abc\n|login: abc|logout: abc\n|quem-sou: abc\n|<cifra> cifrar: abc\n|<cifra> decifrar: abc\n");
      return;
 }
@@ -62,3 +65,4 @@ void ec() { //Incompleto - Deve ser capaz de ler um texto inteiro, ignorando esp
     printf("%s\n", parameter);
     return;
 }
+
