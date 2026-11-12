@@ -55,7 +55,7 @@ int main() {
 }
 
 void help() { //Incompleto - Deve conter informações sobre todos os comandos
-     printf("Comandos\n|ajuda: Imprime todos os comandos previstos no programa e seus usos.\n|sair: Encerra o programa.\n|ec <texto>: Le e imprime de volta o texto inserido.\n|criar: abc\n|cat: abc\n|cesar cifrar: abc\n|cesar decifrar: abc\n|registrar: abc\n|login: abc|logout: abc\n|quem-sou: abc\n|<cifra> cifrar: abc\n|<cifra> decifrar: abc\n");
+     printf("Comandos\n|help - Imprime todos os comandos previstos no programa e seus usos.\n|exit - Encerra o programa.\n|ec <texto> - Le e imprime de volta o texto inserido.\n|create: WIPHOJE\n|cat: WIPHOJE\n|caesar-encrypt: WIPHOJE\n|caesar-decrypt: WIPHOJE\n|registrar: WIP\n|login: WIP|logout: WIP\n|quem-sou: WIP\n|<cifra> cifrar: WIP\n|<cifra> decifrar: WIP\n");
      return;
 }
 
@@ -65,4 +65,3 @@ void ec() { //Incompleto - Deve ser capaz de ler um texto inteiro, ignorando esp
     printf("%s\n", parameter);
     return;
 }
-
