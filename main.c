@@ -31,13 +31,9 @@ int main() {
         }else if (strcmp(command, "cat") == 0) {
 
         }else if (strcmp(command, "caesar-encrypt") == 0) {
-            int chave;
-            char[] texto_limpo;
-            scanf("Digite uma chave: ", &chave);
-
-            CaesarEncrypt(command, chave);
+            CaesarEncrypt();
         }else if (strcmp(command, "caesar-decrypt") == 0) {
-            
+            CaesarDecrypt();
         }else if (strcmp(command, "register") == 0) {
 
         }else if (strcmp(command, "login") == 0) {
