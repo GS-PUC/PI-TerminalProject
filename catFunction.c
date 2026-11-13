@@ -1,7 +1,13 @@
 #include <stdio.h>
 
-void catFunction(const char *filename)  //Função recebe o caminho completo do arquivo desejado.
+void catFunction()
 {
+    char filename[1024]; //Variável que recebe o caminho completo do arquivo
+
+    printf("Digite o caminho completo do seu arquivo:\nExemplo: C:\\\\Users\\\\User\\\\Dummy.txt\n");
+
+    scanf("%s", filename);
+
     FILE *file; //Ponteiro para a estrutura C
     int caractere; //Caractere que vai armazenar todas a letras do texto do documento
 
@@ -21,10 +27,3 @@ void catFunction(const char *filename)  //Função recebe o caminho completo do 
 
     fclose(file); //fechará o arquivo
 }
-
-//int main(){
-//    catFunction("C:\\Users\\jbolo\\OneDrive\\Desktop\\PI Project\\Dummy.txt");
-//    return 0;
-//}
-
-
