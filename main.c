@@ -22,14 +22,12 @@ int main() {
         }else if (strcmp(command, "exit") == 0) {
             printf("Encerrando o processo.");
             return EXIT_SUCCESS; //Finaliza o programa com sucesso
-
         }else if (strcmp(command, "ec") == 0) {
             ec();
         }else if (strcmp(command, "create") == 0) {
             criar()
-
         }else if (strcmp(command, "cat") == 0) {
-
+            cat();
         }else if (strcmp(command, "caesar-encrypt") == 0) {
             CaesarEncrypt();
         }else if (strcmp(command, "caesar-decrypt") == 0) {
