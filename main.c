@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <strings.h>
 #include "cesarcifrar.c"
-
-void  help();
-void ec();
+#include "criar.c"
+#include "ec.c"
+#include "ajuda.c"
 
 int main() {
 
@@ -26,15 +26,18 @@ int main() {
         }else if (strcmp(command, "ec") == 0) {
             ec();
         }else if (strcmp(command, "create") == 0) {
+            criar()
 
         }else if (strcmp(command, "cat") == 0) {
 
         }else if (strcmp(command, "caesar-encrypt") == 0) {
             int chave;
+            char[] texto_limpo;
             scanf("Digite uma chave: ", &chave);
+
             CaesarEncrypt(command, chave);
         }else if (strcmp(command, "caesar-decrypt") == 0) {
-
+            
         }else if (strcmp(command, "register") == 0) {
 
         }else if (strcmp(command, "login") == 0) {
@@ -52,16 +55,4 @@ int main() {
             continue;
         }
     }
-}
-
-void help() { //Incompleto - Deve conter informações sobre todos os comandos
-     printf("Comandos\n|help - Imprime todos os comandos previstos no programa e seus usos.\n|exit - Encerra o programa.\n|ec <texto> - Le e imprime de volta o texto inserido.\n|create: WIPHOJE\n|cat: WIPHOJE\n|caesar-encrypt: WIPHOJE\n|caesar-decrypt: WIPHOJE\n|registrar: WIP\n|login: WIP|logout: WIP\n|quem-sou: WIP\n|<cifra> cifrar: WIP\n|<cifra> decifrar: WIP\n");
-     return;
-}
-
-void ec() { //Incompleto - Deve ser capaz de ler um texto inteiro, ignorando espaços.
-    char parameter[30];
-    scanf("%29s", parameter);
-    printf("%s\n", parameter);
-    return;
 }
