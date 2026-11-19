@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include "cesarcifrar.c"
 #include "criar.c"
 #include "ec.c"
 #include "ajuda.c"
+#include "catFuncion.c"
 
 int main() {
 
@@ -25,9 +26,9 @@ int main() {
         }else if (strcmp(command, "ec") == 0) {
             ec();
         }else if (strcmp(command, "create") == 0) {
-            criar()
+            criar();
         }else if (strcmp(command, "cat") == 0) {
-            cat();
+            catFunction();
         }else if (strcmp(command, "caesar-encrypt") == 0) {
             CaesarEncrypt();
         }else if (strcmp(command, "caesar-decrypt") == 0) {
