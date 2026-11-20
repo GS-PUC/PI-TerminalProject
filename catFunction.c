@@ -49,7 +49,3 @@ printf("\n========== CONTEUDO DO ARQUIVO ==========\n\n");
     fclose(file); //fechará o arquivo
      printf("\n\n========== FIM DO ARQUIVO ==========\n");
 }
-
-int main(){
-    catFunction();
-}
