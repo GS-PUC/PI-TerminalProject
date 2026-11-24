@@ -1,51 +1,92 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX 1024
+
+#define MAX_BUFFER_SIZE 4096
+#define FILE_NAME_SIZE 1024
 
 void catFunction()
 {
-    char filename[MAX]; //Variável que recebe o caminho completo do arquivo
-    int caractere; //Caractere que vai armazenar todas a letras do texto do documento
-    
-    // Solicita o caminho do arquivo ao usuário
-    printf("Digite o caminho completo do arquivo:\n(não use caracteres especiais)\n");
+    char filename[FILE_NAME_SIZE];
+    FILE *file = NULL;
+
+    // Continua solicitando até encontrar um arquivo válido
     //printf("Exemplo: C:\\Users\\User\\Dummy.txt\n> ");
-    
-    while(fgets(filename, sizeof(filename), stdin) == NULL)
+    while (file == NULL)
     {
-        fprintf(stderr, "Erro ao ler o caminho do arquivo (não use caracteres especiais).\n"); //Se o arquivo  estiver com algum problema, será detectado aqui
-        return;
-    }
-    
-    filename[strcspn(filename, "\n")] = '\0'; // Remove a quebra de linha
+        // Solicita o caminho do arquivo ao usuário
+        printf("\nDigite o caminho completo do arquivo:\n");
 
-        if (filename[0] == '\0')
-    {
-        fprintf(stderr, "O caminho do arquivo nao pode estar vazio.\n"); // Garante que o caminho nunca fique vazio
-        return;
-    }
-    
-       
-    FILE *file = fopen(filename, "r"); // Abre o arquivo em modo de leitura
+        if (fgets(filename, sizeof(filename), stdin) == NULL) {
+            printf("Erro ao ler o caminho do arquivo.\n");
+            return;
+        }
 
-    if (file == NULL)
-    {
-         printf("Erro ao abrir o arquivo '%s'! Tente novamente!\n", filename); // Caso acontecça algo durante a abertura do arquivo, o programa não vai quebrar. 
-        return;
+        // Verifica se a entrada ultrapassou o buffer
+        if (strchr(filename, '\n') == NULL && !feof(stdin)) {
+            int ch;
+
+            // Descarta o restante da entrada
+            while ((ch = getchar()) != '\n' && ch != EOF);
+
+            printf("Erro: caminho muito longo. Tente novamente.\n");
+            continue;
+        }
+
+        // Remove a quebra de linha deixada pelo fgets
+        filename[strcspn(filename, "\n")] = '\0';
+
+
+        // Remove aspas do começo e do fim do caminho
+        size_t len = strlen(filename);
+
+        if (len >= 2 && filename[0] == '"' && filename[len - 1] == '"') {
+            filename[len - 1] = '\0';
+
+        // Move o conteúdo uma posição para trás
+        memmove(filename, filename + 1, len - 1);
+        }
+
+        // Verifica se o caminho está vazio
+        if (filename[0] == '\0') {
+            printf("Nenhum arquivo informado.\n");
+            printf("O caminho do arquivo nao pode estar vazio.\n");
+            continue;
+        }
+
+        // Abre o arquivo em modo de leitura
+        file = fopen(filename, "r");
+
+        if (file == NULL) {
+            printf("Arquivo nao encontrado ou sem permissao de leitura.\n");
+            printf("Verifique o caminho e tente novamente.\n");
+        }
     }
 
-printf("\n========== CONTEUDO DO ARQUIVO ==========\n\n");
-    
-    while ((caractere = fgetc(file)) != EOF) // O While vai ficar em execução até chegar no ultimo caractere contido no arquivo
-    {
-        putchar(caractere); //exibirá caractere por caractere na tela
-    }
-        if (ferror(file))
-    {
-        fprintf(stderr, "\nErro durante a leitura do arquivo.\n"); // Caso acontecça algo durante a exibição do arquivo, o programa não vai quebrar
+    char buffer[MAX_BUFFER_SIZE];
+    size_t bytesRead;
+
+    printf("\n========== CONTEUDO DO ARQUIVO ==========\n\n");
+
+    // Realiza a leitura em blocos
+    while ((bytesRead = fread(buffer, 1, sizeof(buffer), file)) > 0) {
+
+        // Exibe o conteúdo lido
+        if (fwrite(buffer, 1, bytesRead, stdout) != bytesRead) {
+            fprintf(stderr, "\nErro ao exibir o conteudo do arquivo.\n");
+            fclose(file);
+            return;
+        }
     }
 
-    fclose(file); //fechará o arquivo
-     printf("\n\n========== FIM DO ARQUIVO ==========\n");
+    // Verifica erros durante a leitura
+    if (ferror(file)) {
+        perror("Erro durante a leitura");
+    }
+
+    // Fecha o arquivo
+    fclose(file);
+
+    printf("\n\n========== FIM DO ARQUIVO ==========\n");
 }
