@@ -16,7 +16,7 @@ void catFunction()
     while (file == NULL)
     {
         // Solicita o caminho do arquivo ao usuário
-        printf("\nDigite o caminho completo do arquivo:\n");
+        printf("\nDigite o caminho completo do arquivo:\ncat ");
 
         if (fgets(filename, sizeof(filename), stdin) == NULL) {
             printf("Erro ao ler o caminho do arquivo.\n");
