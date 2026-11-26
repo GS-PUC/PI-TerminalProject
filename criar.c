@@ -5,7 +5,6 @@
 void criar(){
     char nome[51], texto[10000];
     FILE *arquivo; // ponteiro usado para manipular o arquivo
-    int c;
 
     do {
         //solicita o nome do arquivo
@@ -67,7 +66,7 @@ void criar(){
 
     //verificar se houve uma falha na abertura
     if(arquivo == NULL){
-        printf("Erro ao criar o arquivo.\n");
+        printf("Erro ao criar o arquivo.\nJa pode existir um arquivo com esse nome ou voce pode nao ter permissao para cria-lo.");
         return;
     }
 
