@@ -66,5 +66,3 @@ void CaesarDecrypt(void){
 
     printf("Texto descriptografado: %s\n", texto);
 }
-    printf("%s", texto);
-}
